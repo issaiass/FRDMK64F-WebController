@@ -405,6 +405,9 @@
         <Group>
           <GroupName>::Device</GroupName>
         </Group>
+        <Group>
+          <GroupName>::Network</GroupName>
+        </Group>
       </Groups>
     </Target>
   </Targets>
@@ -479,6 +482,18 @@
           <targetInfo name="Target 1"/>
         </targetInfos>
       </api>
+      <api Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="Ethernet MAC" exclusive="0">
+        <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="4.3.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </api>
+      <api Capiversion="2.00" Cclass="CMSIS Driver" Cgroup="Ethernet PHY" exclusive="0">
+        <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="4.3.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </api>
       <api Capiversion="2.02" Cclass="CMSIS Driver" Cgroup="I2C" exclusive="0">
         <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="4.3.0"/>
         <targetInfos>
@@ -529,6 +544,48 @@
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
+      <component Cbundle="MDK-Pro" Cclass="Network" Cgroup="CORE" Cvariant="Debug" Cvendor="Keil" Cversion="6.3.0" condition="CMSIS Core with RTOS">
+        <package name="MDK-Middleware" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="6.3.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cbundle="MDK-Pro" Cclass="Network" Cgroup="Interface" Csub="ETH" Cvendor="Keil" Cversion="6.3.0" condition="Network Driver ETH" maxInstances="1">
+        <package name="MDK-Middleware" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="6.3.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cbundle="MDK-Pro" Cclass="Network" Cgroup="Service" Csub="Web Server Compact" Cvendor="Keil" Cversion="6.3.0" condition="Network Web Server Compact">
+        <package name="MDK-Middleware" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="6.3.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cbundle="MDK-Pro" Cclass="Network" Cgroup="Socket" Csub="TCP" Cvendor="Keil" Cversion="6.3.0" condition="Network Interface">
+        <package name="MDK-Middleware" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="6.3.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cbundle="MDK-Pro" Cclass="Network" Cgroup="Socket" Csub="UDP" Cvendor="Keil" Cversion="6.3.0" condition="Network Interface">
+        <package name="MDK-Middleware" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="6.3.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="Ethernet MAC" Cvendor="Keil" Cversion="1.00" condition="Kinetis_K64F CMSIS_Driver ETH_MAC">
+        <package name="Kinetis_SDK_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.0.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Capiversion="2.0.0" Cclass="CMSIS Driver" Cgroup="Ethernet PHY" Csub="KSZ8081RNA" Cvendor="Keil" Cversion="6.2.0" condition="CMSIS Core">
+        <package name="CMSIS-Driver" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="ARM" version="2.2.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
       <component Capiversion="2.02" Cclass="CMSIS Driver" Cgroup="I2C" Cvendor="Keil" Cversion="1.00" condition="Kinetis_K64F CMSIS_Driver I2C">
         <package name="Kinetis_SDK_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.0.0"/>
         <targetInfos>
@@ -560,6 +617,12 @@
         </targetInfos>
       </component>
       <component Cclass="Device" Cgroup="KSDK HAL" Csub="DMAMUX" Cvendor="Keil" Cversion="1.1.0" condition="Kinetis">
+        <package name="Kinetis_SDK_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.0.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="KSDK HAL" Csub="ENET" Cvendor="Keil" Cversion="1.1.0" condition="Kinetis">
         <package name="Kinetis_SDK_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.0.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
@@ -735,6 +798,54 @@
         <instance index="0">RTE\Device\MK64FN1M0VLL12\system_MK64F12.h</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="2.7" condition="Kinetis_ARMCC"/>
         <package name="Kinetis_SDK_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.0.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" name="Network\Config\Net_Config.c" version="5.00">
+        <instance index="0">RTE\Network\Net_Config.c</instance>
+        <component Cbundle="MDK-Pro" Cclass="Network" Cgroup="CORE" Cvariant="Debug" Cvendor="Keil" Cversion="6.3.0" condition="CMSIS Core with RTOS"/>
+        <package name="MDK-Middleware" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="6.3.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" name="Network\Config\Net_Config_ETH.h" version="5.01">
+        <instance index="0">RTE\Network\Net_Config_ETH_0.h</instance>
+        <component Cbundle="MDK-Pro" Cclass="Network" Cgroup="Interface" Csub="ETH" Cvendor="Keil" Cversion="6.3.0" condition="Network Driver ETH" maxInstances="1"/>
+        <package name="MDK-Middleware" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="6.3.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" name="Network\Config\Net_Config_HTTP_Server.h" version="5.0.1">
+        <instance index="0">RTE\Network\Net_Config_HTTP_Server.h</instance>
+        <component Cbundle="MDK-Pro" Cclass="Network" Cgroup="Service" Csub="Web Server Compact" Cvendor="Keil" Cversion="6.3.0" condition="Network Web Server Compact"/>
+        <package name="MDK-Middleware" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="6.3.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" name="Network\Config\Net_Config_TCP.h" version="5.0.1">
+        <instance index="0">RTE\Network\Net_Config_TCP.h</instance>
+        <component Cbundle="MDK-Pro" Cclass="Network" Cgroup="Socket" Csub="TCP" Cvendor="Keil" Cversion="6.3.0" condition="Network Interface"/>
+        <package name="MDK-Middleware" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="6.3.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" name="Network\Config\Net_Config_UDP.h" version="5.00">
+        <instance index="0">RTE\Network\Net_Config_UDP.h</instance>
+        <component Cbundle="MDK-Pro" Cclass="Network" Cgroup="Socket" Csub="UDP" Cvendor="Keil" Cversion="6.3.0" condition="Network Interface"/>
+        <package name="MDK-Middleware" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="6.3.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" name="Network\Config\Net_Debug.c" version="5.00">
+        <instance index="0">RTE\Network\Net_Debug.c</instance>
+        <component Cbundle="MDK-Pro" Cclass="Network" Cgroup="CORE" Cvariant="Debug" Cvendor="Keil" Cversion="6.3.0" condition="CMSIS Core with RTOS"/>
+        <package name="MDK-Middleware" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="6.3.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
