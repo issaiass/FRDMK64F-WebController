@@ -140,9 +140,9 @@
           <Flash2></Flash2>
           <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
-          <pFcarmOut></pFcarmOut>
-          <pFcarmGrp></pFcarmGrp>
-          <pFcArmRoot></pFcArmRoot>
+          <pFcarmOut>web.c</pFcarmOut>
+          <pFcarmGrp>Source Group 1</pFcarmGrp>
+          <pFcArmRoot>Web</pFcArmRoot>
           <FcArmLst>0</FcArmLst>
         </Utilities>
         <TargetArmAds>
@@ -390,6 +390,21 @@
               <FileName>SensorThread.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\SensorThread.c</FilePath>
+            </File>
+            <File>
+              <FileName>web.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>Web\web.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Web</GroupName>
+          <Files>
+            <File>
+              <FileName>loc.cgx</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\loc.cgx</FilePath>
             </File>
           </Files>
         </Group>
