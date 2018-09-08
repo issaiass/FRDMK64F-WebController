@@ -1,6 +1,11 @@
 
 #include <cmsis_os.h>                                           // CMSIS RTOS header file
 #include "Board_LED.h"                  // ::Board Support:LED
+#include "Board_Accelerometer.h"        // ::Board Support:Accelerometer
+#include "Board_Magnetometer.h"         // ::Board Support:Magnetometer
+ACCELEROMETER_STATE g_accel;
+MAGNETOMETER_STATE g_magneto;
+
 /*----------------------------------------------------------------------------
  *      Thread 1 'Thread_Name': Sample thread
  *---------------------------------------------------------------------------*/
@@ -18,9 +23,12 @@ int Init_Thread (void) {
 }
 
 void Thread (void const *argument) {
-
+Accelerometer_Initialize();
+Magnetometer_Initialize();
   while (1) {
     osDelay(500);
+    Accelerometer_GetState (&g_accel);
+    Magnetometer_GetState (&g_magneto); 
     LED_On(2); //red LED
     osDelay(500);
     LED_Off(2);

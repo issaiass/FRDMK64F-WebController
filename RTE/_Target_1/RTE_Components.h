@@ -16,12 +16,18 @@
  */
 #define CMSIS_device_header "fsl_device_registers.h"
 
+#define RTE_BOARD_SUPPORT_ACCELEROMETER
+#define RTE_BOARD_SUPPORT_MAGNETOMETER
 #define RTE_CMSIS_RTOS                  /* CMSIS-RTOS */
         #define RTE_CMSIS_RTOS_RTX              /* CMSIS-RTOS Keil RTX */
 #define RTE_DEVICE_CONFIGURATION_FRDM_K64F
+#define RTE_DEVICE_DRIVER_EDMA
 #define RTE_DEVICE_DRIVER_GPIO
 #define RTE_DEVICE_DRIVER_RTC
+#define RTE_DEVICE_HAL_DMAMUX
+#define RTE_DEVICE_HAL_EDMA
 #define RTE_DEVICE_HAL_GPIO
+#define RTE_DEVICE_HAL_I2C
 #define RTE_DEVICE_HAL_LPTMR
 #define RTE_DEVICE_HAL_MCG
 #define RTE_DEVICE_HAL_OSC
@@ -34,5 +40,8 @@
 #define RTE_DEVICE_SYSTEM_CLOCK
 #define RTE_DEVICE_SYSTEM_INTERRUPT
 #define RTE_DEVICE_UTILITY_DEBUG_CONSOLE
+#define RTE_Drivers_I2C0                /* Driver I2C0 */
+        #define RTE_Drivers_I2C1                /* Driver I2C1 */
+        #define RTE_Drivers_I2C2                /* Driver I2C2 */
 
 #endif /* RTE_COMPONENTS_H */
