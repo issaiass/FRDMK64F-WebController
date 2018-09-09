@@ -103,45 +103,45 @@
 
 //     <o>Address byte 4 <0-255>
 //     <i>Default: 254
-#define ETH0_GW4                254
+#define ETH0_GW4                1
 //   </h>
 
 //   <h>Primary DNS Server
 //   <i>Primary DNS Server IP Address
 //     <o>Address byte 1 <0-255>
 //     <i>Default: 194
-#define ETH0_PRI_DNS1           194
+#define ETH0_PRI_DNS1           192
 
 //     <o>Address byte 2 <0-255>
 //     <i>Default: 25
-#define ETH0_PRI_DNS2           25
+#define ETH0_PRI_DNS2           168
 
 //     <o>Address byte 3 <0-255>
 //     <i>Default: 2
-#define ETH0_PRI_DNS3           2
+#define ETH0_PRI_DNS3           0
 
 //     <o>Address byte 4 <0-255>
 //     <i>Default: 129
-#define ETH0_PRI_DNS4           129
+#define ETH0_PRI_DNS4           1
 //   </h>
 
 //   <h>Secondary DNS Server
 //   <i>Secondary DNS Server IP Address
 //     <o>Address byte 1 <0-255>
 //     <i>Default: 194
-#define ETH0_SEC_DNS1           194
+#define ETH0_SEC_DNS1           8
 
 //     <o>Address byte 2 <0-255>
 //     <i>Default: 25
-#define ETH0_SEC_DNS2           25
+#define ETH0_SEC_DNS2           8
 
 //     <o>Address byte 3 <0-255>
 //     <i>Default: 2
-#define ETH0_SEC_DNS3           2
+#define ETH0_SEC_DNS3           8
 
 //     <o>Address byte 4 <0-255>
 //     <i>Default: 130
-#define ETH0_SEC_DNS4           130
+#define ETH0_SEC_DNS4           8
 //   </h>
 
 //   <h>ARP Definitions
