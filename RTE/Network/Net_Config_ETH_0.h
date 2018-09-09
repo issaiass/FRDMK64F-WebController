@@ -200,7 +200,7 @@
 //   <i>* * * UDP Socket Required (in Manage RTE Window) * * *
 //   <i>This service uses one UDP socket, so also adjust the number of
 //   <i>UDP sockets in Net_Config_UDP.h.
-#define ETH0_DHCP_ENABLE        1
+#define ETH0_DHCP_ENABLE        0
 
 //     <s.40>Vendor Class Identifier
 //     <i>This value is optional. If specified, it is added
