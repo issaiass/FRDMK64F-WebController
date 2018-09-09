@@ -16,6 +16,7 @@
  */
 #define CMSIS_device_header "fsl_device_registers.h"
 
+#define JANSSON
 #define RTE_BOARD_SUPPORT_ACCELEROMETER
 #define RTE_BOARD_SUPPORT_MAGNETOMETER
 #define RTE_CMSIS_RTOS                  /* CMSIS-RTOS */
