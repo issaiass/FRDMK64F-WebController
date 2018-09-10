@@ -8,8 +8,10 @@
 #include "rl_net.h"                     // Keil.MDK-Pro::Network:CORE
 
 
+
 extern void hardware_init (void);
 extern void Init_Thread(void);
+extern void Init_Timers(void);
 
 void dhcp_client_notify(uint32_t if_num, dhcpClientOption opt, const uint8_t *val, uint32_t len) {
     if (opt == dhcpClientIPaddress) {
@@ -26,6 +28,7 @@ int main (void) {
     osKernelInitialize(); // initialize CMSIS-RTOS
     hardware_init();
     Init_Thread();
+	  Init_Timers();
     LED_Initialize();
     net_initialize();
     osKernelStart(); // start thread execution

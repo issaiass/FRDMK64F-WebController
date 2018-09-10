@@ -15,9 +15,12 @@
 #include "Board_LED.h"                  // ::Board Support:LED
 #include "jansson.h"                    // Keil::Data Exchange:JSON:Jansson
 #include "cmsis_os.h"                   // ARM::CMSIS:RTOS:Keil RTX
+#include "fsl_gpio_hal.h"               // Keil::Device:KSDK HAL:GPIO
+#include "fsl_gpio_driver.h"            // Keil::Device:KSDK Driver:GPIO
 
 extern MAGNETOMETER_STATE g_magneto;
 extern ACCELEROMETER_STATE g_accel;  
+extern osTimerId id1;                                     // timer id
 
 // Process query string received by GET request.
 void cgi_process_query (const char *qstr) {
@@ -53,7 +56,7 @@ static char post_dat_buf[256];
 //            - 4 = any XML encoded POST data (single or last stream).
 //            - 5 = the same as 4, but with more XML data to follow.
 void cgi_process_data (uint8_t code, const char *data, uint32_t len) {
-  char var[40];
+//  char var[40];
 
   switch (code) {
     case 0:
@@ -143,58 +146,72 @@ uint32_t cgi_script (const char *env, char *buf, uint32_t buflen, uint32_t *pcgi
   }
   */
 //  return (len);
-  uint32_t len = 0;
-  json_t* jdata;
-	int32_t error_flag = 0;
-	
+    uint32_t len = 0;
+    json_t* jdata;
+	  int32_t error_flag = 0;
+    unsigned char i;	
 //	LED_On(2);
-  switch (env[0]) {
-    case 'l' :
-			sprintf(buf, "{\"x\":\"%d\", \"y\":\"%d\", \"z\":\"%d\", \"ax\":\"%d\", \"ay\":\"%d\", \"az\":\"%d\"}" \
-		  ,g_magneto.x, g_magneto.y, g_magneto.z, g_accel.x, g_accel.y, g_accel.z);	
-    len = strlen(buf);
-
-          break;
+    switch (env[0]) {
+        case 'l':
+			      sprintf(buf, "{\"x\":\"%d\", \"y\":\"%d\", \"z\":\"%d\", \"ax\":\"%d\", \"ay\":\"%d\", \"az\":\"%d\"}" \
+		        ,g_magneto.x, g_magneto.y, g_magneto.z, g_accel.x, g_accel.y, g_accel.z);	
+            len = strlen(buf);
+            break;
+				case 'm':
+            i = GPIO_HAL_ReadPinInput(PTE_BASE, 26);
+            sprintf(buf, "{\"rly1\":\"%d\"}", i);	
+            len = strlen(buf);
+				    break;
 	  // RPC Call
-    case 'r' : {
-		    char* met;
-			  char* par;
-				json_error_t jerror;
-			  json_t* jmethod, *jparams;
-			  if (json_rpc_cmd == NULL) 
-				    break; 
-		    jdata = json_loads(json_rpc_cmd, 0, &jerror);
-			  if(jdata) {
+        case 'r': {
+		        char* met;
+			      char* par;
+				    json_error_t jerror;
+			      json_t* jmethod, *jparams;
+            uint16_t tmr;			  
+			
+			      if (json_rpc_cmd == NULL) 
+				        break; 
+		        jdata = json_loads(json_rpc_cmd, 0, &jerror);
+			      if(jdata) {
 					/* Parse Parameters from the JSON string */
-					jmethod  = json_object_get(jdata, "method");
-					jparams  = json_object_get(jdata, "params");
-          met = (char*)json_string_value(jmethod);
-					par = (char *)json_string_value(jparams);
-					switch (met[0]) {
-						case 's':
-							  if(par[0] == '1')
-								    LED_On(0);
-							  break;
-						case 'c':
-							  if(par[0] == '0')
-									  LED_Off(0);
-								break;
-						default:							
-				        break;
-					}
+					      jmethod  = json_object_get(jdata, "method");
+					      jparams  = json_object_get(jdata, "params");
+                met = (char*)json_string_value(jmethod);
+					      par = (char *)json_string_value(jparams);
+					  switch (met[0]) {
+						    case 's':
+							      if(par[0] == '1')
+								        LED_On(0);
+							      break;
+						    case 'c':
+							      if(par[0] == '0')
+									      LED_Off(0);
+								    break;
+						    case 't':
+							      tmr = atoi(par);
+							      if(tmr > 0) {
+									      LED_On(0);
+									      osTimerStart (id1, tmr); 
+								    }
+							  // osSignalWait(0x0001, osWaitForever); // debe ir en la funcion de thread
+                // osSignalSet(tid_ToggleLED, 0x0001); //ver
+								    break;
+						    default:							
+				            break;
+					    }
 					/* Acknowledge the JSON RPC call*/
-					strcpy(buf, "{\"jsonrpc\": \"2.0\", \"result\": 1, \"id\":\"jrpc\"}");
-					len = 44;
+				    strcpy(buf, "{\"jsonrpc\": \"2.0\", \"result\": 1, \"id\":\"jrpc\"}");
+					  len = 44;
 				}
 		    json_decref( jdata );
 			  json_decref( jmethod );
 				json_decref( jparams );
         return (len| (1U<<30));
-		}
-
-  }
+        }
+    }
 //   LED_Off(2);
-  return (len);
+    return (len);
 }
  
 // Override default Content-Type for CGX script files.

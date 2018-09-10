@@ -401,11 +401,40 @@
               <FileType>1</FileType>
               <FilePath>.\HTTP_Server_CGI.c</FilePath>
             </File>
+            <File>
+              <FileName>RelayTimers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\RelayTimers.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Web</GroupName>
           <Files>
+            <File>
+              <FileName>rly.cgx</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\rly.cgx</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>2</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>0</ComprImg>
+                </CommonProperty>
+                <FileArmAds/>
+              </FileOption>
+            </File>
             <File>
               <FileName>loc.cgx</FileName>
               <FileType>9</FileType>
@@ -573,6 +602,16 @@
                 </CommonProperty>
                 <FileArmAds/>
               </FileOption>
+            </File>
+            <File>
+              <FileName>off.png</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\off.png</FilePath>
+            </File>
+            <File>
+              <FileName>on.png</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\on.png</FilePath>
             </File>
           </Files>
         </Group>
